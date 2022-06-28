@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('quantity');
             $table->string('market');
             $table->string('date');
+            $table->boolean('status');
             $table->timestamps();
         });
     }

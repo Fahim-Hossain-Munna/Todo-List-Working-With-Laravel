@@ -27,3 +27,5 @@ Route::post('store_todo', [App\Http\Controllers\TodolistController::class, 'stor
 
 Route::get('delete/data/{id} ', [App\Http\Controllers\TodolistController::class, 'destroy']);
 
+Route::get('done/data/{id} ', [App\Http\Controllers\TodolistController::class, 'done_actived_data']);
+

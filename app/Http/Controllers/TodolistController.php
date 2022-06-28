@@ -29,6 +29,7 @@ class TodolistController extends Controller
             'quantity' => $request->quantity,
             'market' => $request->market,
             'date' => $request->date,
+            'status' => false,
             'created_at' => Carbon::now(),
         ]);
 
@@ -40,5 +41,18 @@ class TodolistController extends Controller
     {
         Todolist::find($id)->delete();
         return back()->with('deleted', 'Data permanently deleted,please check your list!');
+    }
+
+    public function done_actived_data(Request $request ,$id)
+    {
+        $data = Todolist::find($id);
+
+        if($data->status == 0){
+            $data->status = 1;
+        }else{
+            $data->status = 0;
+        }
+        $data->save();
+        return back();
     }
 }

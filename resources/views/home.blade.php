@@ -110,6 +110,7 @@
                                 <th>Selected Market Name</th>
                                 <th>Date</th>
                                 <th>Data Submit From</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -122,7 +123,13 @@
                                   <td>{{ $todo->market }}</td>
                                   <td>{{ $todo->date }}</td>
                                   <td>{{ $todo->created_at->diffForHumans() }}</td>
-                                  <td> <a href="{{ url('delete/data') }}/{{ $todo->id }}" class="btn btn-danger btn-sm">Delete</a> </td>
+                                  <td> <small class="badge bg-primary">@if ( $todo->status == 0)
+                                      Undone
+                                      @else Done
+                                  @endif</small> </td>
+                                  <td> <a href="{{ url('delete/data') }}/{{ $todo->id }}" class="btn btn-danger btn-sm">Delete</a>
+                                       <a href="{{ url('done/data') }}/{{ $todo->id }}" class="btn btn-info btn-sm">Wrok Done</a>
+                                </td>
                               </tr>
                           @endforeach
 
