@@ -125,8 +125,11 @@
                                   <td>{{ $todo->created_at->diffForHumans() }}</td>
                                   <td> <small class="badge bg-primary">@if ( $todo->status == 0)
                                       Undone
-                                      @else Done
-                                  @endif</small> </td>
+                                  @endif</small>
+                                  <small class="badge bg-success">@if ( $todo->status == 1)
+                                    Done
+                                @endif</small>
+                                </td>
                                   <td> <a href="{{ url('delete/data') }}/{{ $todo->id }}" class="btn btn-danger btn-sm">Delete</a>
                                        <a href="{{ url('done/data') }}/{{ $todo->id }}" class="btn btn-info btn-sm">Wrok Done</a>
                                 </td>
