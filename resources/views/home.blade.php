@@ -133,15 +133,47 @@
                                   <td>{{ $todo->market }}</td>
                                   <td>{{ $todo->date }}</td>
                                   <td> {{ \Carbon\Carbon::parse($todo->created_at)->diffForHumans() }} </td>
-                                  <td> <small class="badge bg-primary">@if ( $todo->status == 0)
-                                      Undone
+                                  <td> <small class="badge @if ($todo->status == 0)  bg-primary @else bg-success @endif">@if ( $todo->status == 0)
+                                      Undone @else Done
                                   @endif</small>
-                                  <small class="badge bg-success">@if ( $todo->status == 1)
-                                    Done
-                                @endif</small>
+
                                 </td>
-                                  <td> <a href="{{ url('delete/data') }}/{{ $todo->id }}" class="btn btn-danger btn-sm">Delete</a>
-                                       <a href="{{ url('done/data') }}/{{ $todo->id }}" class="btn btn-info btn-sm">Wrok Done</a>
+                                  <td> <a href="{{ url('delete/data') }}/{{ $todo->id }}" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">Delete</a>
+                                    {{-- only for delete model start --}}
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                          <div class="modal-content">
+
+                                            <div class="modal-body">
+                                             <h3>Are You Sure Sir,</h3>
+                                             <h2 class="text-danger">Your Data will Delete Permanently!</h2>
+                                            </div>
+                                            <div class="modal-footer">
+                                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                              <a href="{{ url('delete/data') }}/{{ $todo->id }}" class="btn btn-primary">Save changes</a>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    {{-- only for delete model end --}}
+                                       <a href="{{ url('done/data') }}/{{ $todo->id }}" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#example">Wrok Done</a>
+                                       {{-- only for approval model start --}}
+                                       <div class="modal fade" id="example" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                          <div class="modal-content">
+
+                                            <div class="modal-body">
+                                                <h3>Are You Sure Sir,</h3>
+                                                <h2 class="text-success">Think Again!</h2>
+                                            </div>
+                                            <div class="modal-footer">
+                                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                              <a href="{{ url('done/data') }}/{{ $todo->id }}" class="btn btn-primary">Save changes</a>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                       {{-- only for approval model start --}}
                                 </td>
                               </tr>
 
