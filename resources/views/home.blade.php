@@ -95,7 +95,7 @@
                     <form action="{{ url('find/here') }}" method="GET">
 
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="search product name here!" name="search_result">
+                            <input type="text" class="form-control" placeholder="search product name here!" name="search_result" value="{{ request('search_result') }}">
                             <button type="submit" class="btn btn-success">Search</button>
                           </div>
                     </form>
@@ -132,7 +132,7 @@
                                   <td>{{ $todo->quantity }}</td>
                                   <td>{{ $todo->market }}</td>
                                   <td>{{ $todo->date }}</td>
-                                  <td>{{ $todo->created_at->diffForHumans() }}</td>
+                                  <td> {{ \Carbon\Carbon::parse($todo->created_at)->diffForHumans() }} </td>
                                   <td> <small class="badge bg-primary">@if ( $todo->status == 0)
                                       Undone
                                   @endif</small>

@@ -11,7 +11,7 @@
                     <form action="{{ url('search/here') }}" method="GET">
                         @csrf
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="search anything!" name="khuzo">
+                            <input type="text" class="form-control" placeholder="search anything!" name="search_result" value="{{ request('search_result') }}">
                             <button type="submit" class="btn btn-success">Search</button>
                           </div>
                     </form>
@@ -35,7 +35,7 @@
                                 <th>Product Quantity</th>
                                 <th>Selected Market Name</th>
                                 <th>Date</th>
-                                {{-- <th>Data Submit From</th> --}}
+                                <th>Data Submit From</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
@@ -48,7 +48,7 @@
                                   <td>{{ $todo->quantity }}</td>
                                   <td>{{ $todo->market }}</td>
                                   <td>{{ $todo->date }}</td>
-                                  {{-- <td>{{ $todo->created_at->diffForHumans() }}</td> --}}
+                                  <td>{{ \Carbon\Carbon::parse($todo->created_at)->diffForHumans() }}</td>
                                   <td> <small class="badge bg-primary">@if ( $todo->status == 0)
                                       Undone
                                   @endif</small>
