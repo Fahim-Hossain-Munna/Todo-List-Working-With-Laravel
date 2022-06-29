@@ -29,3 +29,7 @@ Route::get('delete/data/{id} ', [App\Http\Controllers\TodolistController::class,
 
 Route::get('done/data/{id} ', [App\Http\Controllers\TodolistController::class, 'done_actived_data']);
 
+Route::get('find/here', [App\Http\Controllers\TodolistController::class, 'find_here']);
+
+Route::get('search', [App\Http\Controllers\TodolistController::class, 'search'])->name('search');
+

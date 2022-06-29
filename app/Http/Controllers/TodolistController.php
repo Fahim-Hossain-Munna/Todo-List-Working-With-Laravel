@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Todolist;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class TodolistController extends Controller
 {
@@ -54,5 +55,13 @@ class TodolistController extends Controller
         }
         $data->save();
         return back();
+    }
+    public function find_here(Request $request){
+            if($request->isMethod('get')){
+                $search = $request->get('search_result');
+                $get_todo = DB::table('todolists')->where('todo_content','LIKE' ,'%'. $search .'%')->get();
+            }
+            return view('search', compact('get_todo'));
+
     }
 }

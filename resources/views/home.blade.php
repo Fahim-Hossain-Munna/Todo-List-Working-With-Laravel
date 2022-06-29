@@ -90,6 +90,16 @@
     <div class="container">
         <div class="row mt-5">
             <div class="card">
+                <div class="card-header">
+                    <h2> Search Your wish, </h2>
+                    <form action="{{ url('find/here') }}" method="GET">
+
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="search product name here!" name="search_result">
+                            <button type="submit" class="btn btn-success">Search</button>
+                          </div>
+                    </form>
+                </div>
                 <div class="card-body">
                     <table class="table table-bordered">
                         @if (session('submit_success'))
@@ -134,8 +144,13 @@
                                        <a href="{{ url('done/data') }}/{{ $todo->id }}" class="btn btn-info btn-sm">Wrok Done</a>
                                 </td>
                               </tr>
-                          @endforeach
 
+                          @endforeach
+                          @if ( $get_todo->count() == 0 )
+                          <tr class="text-center">
+                            <td colspan="50"><p class="text-danger">No Data Show</p></td>
+                          </tr>
+                        @endif
                         </tbody>
                     </table>
 
